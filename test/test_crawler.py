@@ -58,10 +58,4 @@ def spider2(temp_url):
                             items.add('http://blog.naver.com' + src)
                             spider('http://blog.naver.com' + src)
 
-print("네이버 계정을 입력하세요...")
-id = input()
-users_1 = users()
-users_1.setId(id)
-# spider('http://blog.naver.com/PostList.nhn?blogId=whydda&widgetTypeCall=true')
-print(items.)
-print('END!!!!!!!!!!!!!!!!!!!!!!')
+
