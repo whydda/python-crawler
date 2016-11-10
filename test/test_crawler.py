@@ -10,7 +10,7 @@ def spider(temp_url):
             source_code = requests.get(url)
             plain_text = source_code.text
             soup = BeautifulSoup(plain_text, "lxml")
-            print(soup)
+            # print(soup)
             for link in soup.select('a'):
                     href = link.get("href")
                     if(chkCallUrl(href)):
@@ -53,17 +53,15 @@ def spider2(temp_url):
                 soup = BeautifulSoup(plain_text, "lxml")
                 for link in soup.select("frameset > frame"):
                         src = link.get("src")
-                        print(src)
+                        # print(src)
                         if 'http://blog.naver.com' + src not in items:
                             items.add('http://blog.naver.com' + src)
                             spider('http://blog.naver.com' + src)
-
-
 
 print("네이버 계정을 입력하세요...")
 id = input()
 users_1 = users()
 users_1.setId(id)
-spider('http://blog.naver.com/PostList.nhn?blogId=whydda&widgetTypeCall=true')
+# spider('http://blog.naver.com/PostList.nhn?blogId=whydda&widgetTypeCall=true')
+print(items.)
 print('END!!!!!!!!!!!!!!!!!!!!!!')
-print(items)
