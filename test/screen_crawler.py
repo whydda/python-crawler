@@ -2,13 +2,20 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter import messagebox
 
+from test.test_crawler import spider, users
+
 
 def displayText():
     if naverId.get().strip() == "":
         messagebox.showinfo("안내", "naver ID를 입력하세요...")
     else:
         outputData.set(naverId.get().strip())
+        entity_users = users()
+        entity_users.setId(naverId.get().strip())
+        spider("http://blog.naver.com/PostList.nhn?blogId="+naverId.get().strip()+"&widgetTypeCall=true&topReferer=http://www.naver.com/", entity_users)
         print(naverId.get().strip())
+        print(users.getItems())
+
 
 class MyFrame(Frame):
     def __init__(self, master):
