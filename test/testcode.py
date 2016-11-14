@@ -1,3 +1,5 @@
+import re
+
 # set으로 값 체크 하기
 set_1 = set()
 set_1.add("a")
@@ -44,12 +46,10 @@ class users(object):
     def __init__(self):
         self.id = None
 
-    @id.getter
     def getId(self):
         print(self.id)
         return self.id
 
-    @id.setter
     def setId(self, value):
         self.id = value
 
@@ -57,3 +57,7 @@ class users(object):
     # def x(self):
     #     print "deleter of x called"
     #     del self._x
+
+# 정규식
+
+print(bool(re.search("http://blog.naver.com/whydda/*[0-9]", "http://blog.naver.com/whydda/aa")))

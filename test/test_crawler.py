@@ -15,12 +15,15 @@ def spider(temp_url, entity_users):
                     href = link.get("href")
                     if(chkCallUrl(href, entity_users)):
                             if(href not in _items):
-                                if (bool(re.search("http://blog.naver.com/" + entity_users.getId + "/*[0-9]", href))):
+                                if (bool(re.search("http://blog.naver.com/" + entity_users.getId + "/*[0-9]", href)) & href.find('http://')  > -1 or href.find('https://') > -1):
                                     _items.add(href)
-                                if(href.find('http://')  > -1 or href.find('https://') > -1):
-                                    spider(href, entity_users)
+                                    print(_items)
                                 else:
-                                    spider('http://blog.naver.com' + href, entity_users)
+                                    chkUrl = 'http://blog.naver.com' + href
+                                    if (bool(re.search(chkUrl + "/*[0-9]",href))):
+                                        _items.add(chkUrl)
+                                        print(_items)
+                                        spider(chkUrl, entity_users)
 def chkCallUrl(href, entity_users):
     if(None == href): #null 처리
         return False
@@ -40,7 +43,6 @@ class users():
 
     @property
     def getId(self):
-        print(self._id)
         return self._id
 
     def setId(self, value):
@@ -61,8 +63,9 @@ def spider2(temp_url, entity_users):
                 for link in soup.select("frameset > frame"):
                         src = link.get("src")
                         if 'http://blog.naver.com' + src not in _items:
-                            # if (bool(re.metch("http://blog.naver.com/" + entity_users.getId + "/*[0-9]", href))):
-                            _items.add('http://blog.naver.com' + src)
-                            spider('http://blog.naver.com' + src, entity_users) # users 객체의 공유 부분 궁금~
+                            if (bool(re.metch("http://blog.naver.com/" + entity_users.getId + "/*[0-9]", src))):
+                                _items.add('http://blog.naver.com' + src)
+                                print(_items)
+                                spider('http://blog.naver.com' + src, entity_users)
 
 
